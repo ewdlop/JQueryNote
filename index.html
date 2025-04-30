@@ -215,6 +215,108 @@ $(document).ready(function(){
   $("button").click(function(){
     $("p").css({"background-color": "yellow", "font-size": "200%"});
   });
+  $("button").click(function(){
+    var txt = "";
+    txt += "Width of div: " + $("#div1").width() + "</br>";
+    txt += "Height of div: " + $("#div1").height();
+    $("#div1").html(txt);
+  });
+  $("button").click(function(){
+    var txt = "";
+    txt += "Width of div: " + $("#div1").width() + "</br>";
+    txt += "Height of div: " + $("#div1").height() + "</br>";
+    txt += "Inner width of div: " + $("#div1").innerWidth() + "</br>";
+    txt += "Inner height of div: " + $("#div1").innerHeight();
+    $("#div1").html(txt);
+  });
+  $("button").click(function(){
+    var txt = "";
+    txt += "Width of div: " + $("#div1").width() + "</br>";
+    txt += "Height of div: " + $("#div1").height() + "</br>";
+    txt += "Outer width of div: " + $("#div1").outerWidth() + "</br>";
+    txt += "Outer height of div: " + $("#div1").outerHeight();
+    $("#div1").html(txt);
+  });
+  $("button").click(function(){
+    var txt = "";
+    txt += "Width of div: " + $("#div1").width() + "</br>";
+    txt += "Height of div: " + $("#div1").height() + "</br>";
+    txt += "Outer width of div (margin included): " + $("#div1").outerWidth(true) + "</br>";
+    txt += "Outer height of div (margin included): " + $("#div1").outerHeight(true);
+    $("#div1").html(txt);
+  });
+  $("button").click(function(){
+    var txt = "";
+    txt += "Document width/height: " + $(document).width();
+    txt += "x" + $(document).height() + "\n";
+    txt += "Window width/height: " + $(window).width();
+    txt += "x" + $(window).height();
+    alert(txt);
+  });
+  $("button").click(function(){
+    $("#div1").width(500).height(500);
+  });
+  $("span").parent().css({"color": "red", "border": "2px solid red"});
+  $("span").parents().css({"color": "red", "border": "2px solid red"});
+  $("span").parentsUntil("div").css({"color": "red", "border": "2px solid red"});
+  $("div").children().css({"color": "red", "border": "2px solid red"});
+  $("div").find("span").css({"color": "red", "border": "2px solid red"});
+  $("h2").siblings().css({"color": "red", "border": "2px solid red"});
+  $("h2").next().css({"color": "red", "border": "2px solid red"});
+  $("h2").nextAll().css({"color": "red", "border": "2px solid red"});
+  $("h2").nextUntil("h6").css({"color": "red", "border": "2px solid red"});
+  $("div").first().css("background-color", "yellow");
+  $("div").last().css("background-color", "yellow");
+  $("p").eq(1).css("background-color", "yellow");
+  $("p").filter(".intro").css("background-color", "yellow");
+  $("p").not(".intro").css("background-color", "yellow");
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myList li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myDIV *").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+  $("button").click(function(){
+    $("#div1").load("demo_test.txt");
+  });
+  $("button").click(function(){
+    $("#div1").load("demo_test.txt #p1");
+  });
+  $("button").click(function(){
+    $("#div1").load("demo_test.txt", function(responseTxt, statusTxt, xhr){
+      if(statusTxt == "success")
+        alert("External content loaded successfully!");
+      if(statusTxt == "error")
+        alert("Error: " + xhr.status + ": " + xhr.statusText);
+    });
+  });
+  $("button").click(function(){
+    $.get("demo_test.asp", function(data, status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });
+  $("button").click(function(){
+    $.post("demo_test_post.asp",
+    {
+      name: "Donald Duck",
+      city: "Duckburg"
+    },
+    function(data,status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });
 });
 function appendText() {
   var txt1 = "<p>Text.</p>";        // Create text with HTML
